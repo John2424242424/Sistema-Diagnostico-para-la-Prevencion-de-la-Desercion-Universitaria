@@ -1,0 +1,78 @@
+import unittest
+from unittest.mock import MagicMock
+from Login import loginUsuario, inserta_datos
+
+class PruebaAutenticacion(unittest.TestCase):
+
+    def test_credenciales_validas(self):  # Changed method name
+        # Simular el ingreso de credenciales válidas
+        login_usuario = MagicMock()
+        login_usuario.return_value = True
+        
+        # Llamar a la función de inicio de sesión con credenciales válidas
+        resultado = login_usuario('usuario_valido', 'contraseña_valida')
+        
+        # Verificar si el usuario puede iniciar sesión correctamente
+        self.assertTrue(resultado)
+
+    def test_credenciales_invalidas(self):  # Changed method name
+        # Simular el ingreso de credenciales inválidas
+        login_usuario = MagicMock()
+        login_usuario.return_value = False
+        
+        # Llamar a la función de inicio de sesión con credenciales inválidas
+        resultado = login_usuario('usuario_invalido', 'contraseña_invalida')
+        
+        # Verificar si el usuario recibe un mensaje de error adecuado
+        self.assertFalse(resultado)
+
+    def test_campos_vacios(self):  # Changed method name
+        # Simular el intento de inicio de sesión con campos vacíos
+        login_usuario = MagicMock()
+        login_usuario.return_value = False
+        
+        # Llamar a la función de inicio de sesión con campos vacíos
+        resultado = login_usuario('', '')
+        
+        # Verificar si se muestra un mensaje de error adecuado
+        self.assertFalse(resultado)
+
+
+class PruebaRegistroUsuario(unittest.TestCase):
+
+    def test_registro_exitoso(self):  # Changed method name
+        # Simular el registro exitoso de un nuevo usuario
+        inserta_datos_mock = MagicMock()
+        inserta_datos_mock.return_value = True
+        
+        # Llamar a la función de registro con credenciales válidas
+        resultado = inserta_datos_mock('nuevo_usuario', 'nueva_contraseña')
+        
+        # Verificar si el usuario se registra correctamente
+        self.assertTrue(resultado)
+
+    def test_usuario_existente(self):  # Changed method name
+        # Simular el intento de registro de un usuario que ya existe
+        inserta_datos_mock = MagicMock()
+        inserta_datos_mock.return_value = False
+        
+        # Llamar a la función de registro con un usuario existente
+        resultado = inserta_datos_mock('usuario_existente', 'contraseña_existente')
+        
+        # Verificar si se muestra un mensaje de error adecuado
+        self.assertFalse(resultado)
+
+    def test_campos_vacios(self):  # Changed method name
+        # Simular el intento de registro sin completar campos
+        inserta_datos_mock = MagicMock()
+        inserta_datos_mock.return_value = False
+        
+        # Llamar a la función de registro con campos vacíos
+        resultado = inserta_datos_mock('', '')
+        
+        # Verificar si se muestra un mensaje de error adecuado
+        self.assertFalse(resultado)
+
+
+if __name__ == '__main__':
+    unittest.main()

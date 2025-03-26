@@ -1,0 +1,38 @@
+import unittest
+from unittest.mock import patch
+import tkinter as tk
+from Sistema_experto import orientar
+
+class TestSistemaExpertoVocacional(unittest.TestCase):
+    def test_orientar(self):
+        respuestas = {
+            1: 'Sí', 2: 'No', 3: 'No', 4: 'No', 5: 'No', 6: 'No', 7: 'Sí', 8: 'No', 9: 'No',
+            10: 'No', 11: 'No', 12: 'Sí'
+        }
+        vocacion = orientar(respuestas)
+        self.assertEqual(vocacion, 'Ingeniería de Sistemas')
+
+        respuestas = {
+            1: 'No', 2: 'Sí', 3: 'No', 4: 'Sí', 5: 'No', 6: 'No', 7: 'No', 8: 'No', 9: 'Sí',
+            10: 'No', 11: 'No', 12: 'No'
+        }
+        vocacion = orientar(respuestas)
+        self.assertEqual(vocacion, 'Ingeniería Ambiental')
+
+        respuestas = {
+            1: 'No', 2: 'No', 3: 'Sí', 4: 'No', 5: 'No', 6: 'Sí', 7: 'No', 8: 'No', 9: 'No',
+            10: 'No', 11: 'Sí', 12: 'No'
+        }
+        vocacion = orientar(respuestas)
+        self.assertEqual(vocacion, 'Arte y creatividad')
+
+        respuestas = {
+            1: 'No', 2: 'No', 3: 'No', 4: 'No', 5: 'Sí', 6: 'No', 7: 'No', 8: 'Sí', 9: 'No',
+            10: 'Sí', 11: 'No', 12: 'No'
+        }
+        vocacion = orientar(respuestas)
+        self.assertEqual(vocacion, 'Administración')
+
+
+if __name__ == '__main__':
+    unittest.main()
