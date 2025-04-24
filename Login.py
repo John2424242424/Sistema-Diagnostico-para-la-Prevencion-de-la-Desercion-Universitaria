@@ -1,4 +1,4 @@
-from ConexionBD import ConnexionBD
+from conexion import ConnexionBD
 from Main import *
 
 def loginUsuario():

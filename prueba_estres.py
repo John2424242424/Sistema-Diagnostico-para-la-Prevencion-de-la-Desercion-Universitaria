@@ -1,6 +1,6 @@
 import concurrent.futures
 import time
-from Login import loginUsuario
+from Main import loginUsuario
 from unittest.mock import MagicMock, patch
 
 # Función para simular un intento de login
